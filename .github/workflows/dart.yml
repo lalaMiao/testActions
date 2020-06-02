@@ -17,5 +17,6 @@ jobs:
         flutter-version: 1.17.2
     # The Flutter build release channel
         channel: stable
+    - run: cd ../
     - run: flutter pub get
     - run: flutter build apk
