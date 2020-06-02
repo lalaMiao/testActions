@@ -24,7 +24,7 @@ jobs:
         project-path: ios/Runner.xcodeproj
         p12-base64: ${{ secrets.HUAZHUOP12 }}
         mobileprovision-base64: ${{ secrets.PROVISION }}
-        code-signing-identity: iOS Distribution
+        code-signing-identity: ${{ secrets.SIGN_NAME }}
         team-id: ${{ secrets.TEAM_ID }}
         workspace-path: ios/Runner.xcworkspace
         export-method: ad-hoc
