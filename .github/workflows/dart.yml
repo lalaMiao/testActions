@@ -9,6 +9,7 @@ jobs:
 
     runs-on: macos-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Flutter action
       uses: subosito/flutter-action@v1.3.2
       with:
@@ -16,6 +17,5 @@ jobs:
         flutter-version: 1.17.2
     # The Flutter build release channel
         channel: stable
-    - run: cd ../../
     - run: flutter pub get
     - run: flutter build apk
