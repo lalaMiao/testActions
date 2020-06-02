@@ -1,0 +1,31 @@
+name: Dart CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Flutter action
+      uses: subosito/flutter-action@v1.3.2
+      with:
+    # The Flutter version to make available on the path
+        flutter-version: 1.17.2
+    # The Flutter build release channel
+        channel: stable
+    - run: flutter pub get
+    - run: flutter build ios --release --no-codesign
+    - uses: yukiarrr/ios-build-action@v0.5.0
+      with:
+        project-path: ios/Runner.xcodeproj
+        p12-base64: ${{ secrets.HUAZHUOP12 }}
+        mobileprovision-base64: ${{ secrets.PROVISION }}
+        code-signing-identity: ${{ secrets.SIGN_NAME }}
+        team-id: ${{ secrets.TEAM_ID }}
+        workspace-path: ios/Runner.xcworkspace
+        export-method: ad-hoc
+        certificate-password: 1234
